@@ -42,15 +42,15 @@ function MenuComponent({ children }: any) {
             </Link>
           </Menu.Item>
           <Menu.Item
-            key="clients"
+            key="comptes"
             style={{ color: "rgba(0, 0, 0, 0.65)" }}
             icon={<ReadOutlined style={{ color: "#e8501d" }} />}
           >
-            <Link to="/clients">Clients</Link>
+            <Link to="/comptes">Comptes</Link>
           </Menu.Item>
-          <Menu.Item key="settings" icon={<SettingsSVG />}>
-            <Link to="/settings" style={{ position: "relative", left: 10 }}>
-              Settings
+          <Menu.Item key="clients" icon={<SettingsSVG />}>
+            <Link to="/clients" style={{ position: "relative", left: 10 }}>
+              Clients
             </Link>
           </Menu.Item>
         </Menu>

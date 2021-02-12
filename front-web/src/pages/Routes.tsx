@@ -12,10 +12,10 @@ function Routes() {
       <Route exact path="/operations">
         <OperationsPage />
       </Route>
-      <Route exact path="/clients">
+      <Route exact path="/comptes">
         <ClientsPage />
       </Route>
-      <Route exact path="/clients/:clientId/operations">
+      <Route exact path="/compte/:compteId/operations">
         <ClientOperationsPage />
       </Route>
       <Route exact path="/settings">

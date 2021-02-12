@@ -4,40 +4,48 @@ import Table, { ColumnProps } from "antd/lib/table";
 import { useDispatch } from "react-redux";
 import { deleteOne } from "../../redux/actions/models";
 import { BarsOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
 import ClientsEditModalComponent from "./ClientsEditModalComponent";
 
-function ClientsTableComponent({ clients }: any) {
-  const [visible, showEditModal] = useState(false);
-  const [categoryToEdit, setClientToEdit] = useState(null);
+function ClientsTableComponent({ comptes }: any) {
   const dispatch = useDispatch();
+  const [visible, showEditModal] = useState(false);
+  const [operationToEdit, setOperationToEdit] = useState({});
 
   const columns: ColumnProps<any>[] = [
     {
-      title: "Clients",
-      dataIndex: "name",
+      title: "id",
+      dataIndex: "id",
       key: "id",
-      // width: "60%",
     },
     {
-      title: "operations",
-      render: (cell, category, index) => (
-        <div className="actionButtons">
-          <Link to={`/clients/${category.id}/operations`}>
-            <Button>
-              <BarsOutlined />
-            </Button>
-          </Link>
-        </div>
-      ),
+      title: "solde",
+      dataIndex: "solde",
+      key: "solde",
+    },
+    {
+      title: "created at",
+      dataIndex: "created_at",
+      key: "Created_at",
+    },
+    {
+      title: "type",
+      dataIndex: "type",
+      key: "type",
+    },
+    {
+      title: "etat",
+      dataIndex: "etat",
+      key: "etat",
     },
     {
       title: "Actions",
-      render: (cell, category, index) => (
+      dataIndex: "action",
+      key: "action",
+      render: (cell, compte, index) => (
         <div className="actionButtons">
           <Button
             onClick={() => {
-              setClientToEdit(category);
+              setOperationToEdit(compte);
               showEditModal(true);
             }}
           >
@@ -45,7 +53,7 @@ function ClientsTableComponent({ clients }: any) {
           </Button>
           <Button
             danger
-            onClick={() => dispatch(deleteOne("clients", category.id))}
+            onClick={() => dispatch(deleteOne("comptes", compte.id))}
           >
             <DeleteOutlined />
           </Button>
@@ -53,14 +61,13 @@ function ClientsTableComponent({ clients }: any) {
       ),
     },
   ];
-
   return (
     <>
-      <Table columns={columns} dataSource={clients || []} rowKey="id" />
+      <Table columns={columns} dataSource={comptes || []} rowKey="id" />
       <ClientsEditModalComponent
-        category={categoryToEdit}
-        visible={visible}
+        clientToEdit={operationToEdit}
         showModal={showEditModal}
+        visible={visible}
       />
     </>
   );

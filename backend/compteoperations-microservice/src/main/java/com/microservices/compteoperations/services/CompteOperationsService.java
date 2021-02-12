@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
-public interface CompteOpsService {
+public interface CompteOperationsService {
     public Compte addCompte(Compte compte);
     public Compte verseMontantCompte(Long compteId, double montant);
     public Compte retraitMontantCompte(Long compteId, double montant);

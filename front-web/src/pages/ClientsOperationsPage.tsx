@@ -16,13 +16,13 @@ function ClientOperationsPage() {
   const operations: any = useSelector(
     (state: any) => state.models["operations"]
   );
-  const { clientId } = useParams();
+  const { comptesId } = useParams();
   useEffect(() => {
     const qb = RequestQueryBuilder.create();
     qb.setFilter({
-      field: "clients.id",
+      field: "comptes.id",
       operator: "$eq",
-      value: clientId,
+      value: comptesId,
     });
     dispatch(fetchAll("operations", qb.query()));
   }, []);

@@ -14,7 +14,7 @@ function OperationsPage() {
     (state: any) => state.models["operations"]
   );
   useEffect(() => {
-    dispatch(fetchAll("operations"));
+    dispatch(fetchAll("operations", ""));
   }, []);
 
   return (
@@ -31,21 +31,3 @@ function OperationsPage() {
 }
 
 export default OperationsPage;
-
-{
-  /* <Row gutter={[48, 24]}>
-          {operations &&
-            operations.map((operations: any) => (
-              <Col
-                key={operations.id}
-                className="gutter-row"
-                sm={24}
-                md={12}
-                lg={8}
-                xl={8}
-              >
-                { <OperationCardComponent {...operations} /> }
-              </Col>
-            ))}
-        </Row> */
-}

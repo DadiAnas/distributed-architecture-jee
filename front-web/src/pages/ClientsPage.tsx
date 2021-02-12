@@ -10,15 +10,15 @@ import ClientsCreateModalComponent from "../components/clients/ClientsCreateModa
 function Clients() {
   const [visible, showModal] = useState(false);
   const dispatch = useDispatch();
-  const Clients: any = useSelector((state: any) => state.models["clients"]);
+  const comptes: any = useSelector((state: any) => state.models["comptes"]);
   useEffect(() => {
-    dispatch(fetchAll("clients"));
+    dispatch(fetchAll("comptes"));
   }, []);
 
   return (
     <HomeLayoutComponent>
       <div className="site-card-wrapper">
-        {Clients && <ClientsTableComponent Clients={Clients} />}
+        {Clients && <ClientsTableComponent comptes={comptes} />}
       </div>
       <div className="footer">
         <PlusButton showModal={() => showModal(!visible)} />

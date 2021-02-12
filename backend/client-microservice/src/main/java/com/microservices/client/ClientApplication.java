@@ -20,8 +20,6 @@ public class ClientApplication {
             restConfigration.exposeIdsFor(Client.class);
             clientRepository.save(new Client(null , "Anas","anas@hotmail.com"));
             clientRepository.save(new Client(null , "dadi","dadi@gmail.com"));
-
-
             clientRepository.findAll().forEach(c->{
                 System.out.println(c.getName()+" "+c.getEmail());
             });
