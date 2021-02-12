@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import HomeLayoutComponent from "../components/Home/HomeLayoutComponent";
-import "../components/css/CategoriesPageStyle.css";
-import CategoriesTableComponent from "../components/categories/CategoriesTableComponent";
+import "../components/css/ClientsPageStyle.css";
+import ClientsTableComponent from "../components/clients/ClientsTableComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAll } from "../redux/actions/models";
 import PlusButton from "../components/svgs/PlusButton";
-import CategoriesCreateModalComponent from "../components/categories/CategoriesCreateModalComponent";
+import ClientsCreateModalComponent from "../components/clients/ClientsCreateModalComponent";
 
-function Categories() {
+function Clients() {
   const [visible, showModal] = useState(false);
   const dispatch = useDispatch();
-  const categories: any = useSelector((state: any) => state.models["clients"]);
+  const Clients: any = useSelector((state: any) => state.models["clients"]);
   useEffect(() => {
     dispatch(fetchAll("clients"));
   }, []);
@@ -18,14 +18,14 @@ function Categories() {
   return (
     <HomeLayoutComponent>
       <div className="site-card-wrapper">
-        {categories && <CategoriesTableComponent categories={categories} />}
+        {Clients && <ClientsTableComponent Clients={Clients} />}
       </div>
       <div className="footer">
         <PlusButton showModal={() => showModal(!visible)} />
       </div>
-      <CategoriesCreateModalComponent visible={visible} showModal={showModal} />
+      <ClientsCreateModalComponent visible={visible} showModal={showModal} />
     </HomeLayoutComponent>
   );
 }
 
-export default Categories;
+export default Clients;

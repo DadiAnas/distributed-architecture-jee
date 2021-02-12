@@ -11,9 +11,6 @@ import org.springframework.context.annotation.Configuration;
 
 public class GatewayDiscoveryConfiguration {
 
-
-
-
     DiscoveryClientRouteDefinitionLocator definitionLocator  (ReactiveDiscoveryClient discoveryClient, DiscoveryLocatorProperties properties){
         return new DiscoveryClientRouteDefinitionLocator(discoveryClient, properties);
     }

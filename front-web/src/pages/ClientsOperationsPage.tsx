@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import { RequestQueryBuilder } from "@nestjsx/crud-request";
 import HomeLayoutComponent from "../components/Home/HomeLayoutComponent";
 import ProductTableComponent from "../components/operations/OperationTableComponent";
-import "../components/css/ProductTableStyle.css";
+import "../components/css/OperationTableStyle.css";
 
 function CategoryProductsPage() {
   const dispatch = useDispatch();

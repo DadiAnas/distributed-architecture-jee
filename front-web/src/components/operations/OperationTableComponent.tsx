@@ -9,7 +9,7 @@ import {
 import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
 import { deleteOne } from "../../redux/actions/models";
 import { useDispatch, useSelector } from "react-redux";
-import "../css/ProductTableStyle.css";
+import "../css/OperationTableStyle.css";
 import { Link } from "react-router-dom";
 import ProductEditModalComponent from "./OperationEditModalComponent";
 
