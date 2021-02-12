@@ -5,11 +5,11 @@ import { useDispatch } from "react-redux";
 import { deleteOne } from "../../redux/actions/models";
 import { BarsOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import CategoriesEditModalComponent from "./ClientsEditModalComponent";
+import ClientsEditModalComponent from "./ClientsEditModalComponent";
 
-function CategoriesTableComponent({ categories }: any) {
+function ClientsTableComponent({ clients }: any) {
   const [visible, showEditModal] = useState(false);
-  const [categoryToEdit, setCategorieToEdit] = useState(null);
+  const [categoryToEdit, setClientToEdit] = useState(null);
   const dispatch = useDispatch();
 
   const columns: ColumnProps<any>[] = [
@@ -37,7 +37,7 @@ function CategoriesTableComponent({ categories }: any) {
         <div className="actionButtons">
           <Button
             onClick={() => {
-              setCategorieToEdit(category);
+              setClientToEdit(category);
               showEditModal(true);
             }}
           >
@@ -56,8 +56,8 @@ function CategoriesTableComponent({ categories }: any) {
 
   return (
     <>
-      <Table columns={columns} dataSource={categories || []} rowKey="id" />
-      <CategoriesEditModalComponent
+      <Table columns={columns} dataSource={clients || []} rowKey="id" />
+      <ClientsEditModalComponent
         category={categoryToEdit}
         visible={visible}
         showModal={showEditModal}
@@ -66,4 +66,4 @@ function CategoriesTableComponent({ categories }: any) {
   );
 }
 
-export default CategoriesTableComponent;
+export default ClientsTableComponent;

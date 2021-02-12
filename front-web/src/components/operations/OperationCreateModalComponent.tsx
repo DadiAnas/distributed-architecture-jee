@@ -5,7 +5,7 @@ import { addOne, fetchAll } from "../../redux/actions/models";
 import "../../../node_modules/antd/dist/antd.css";
 import MultipleInputSelect from "../MultipleInputSelect";
 import { useForm } from "react-hook-form";
-import "../css/ProductCreateModalStyle.css";
+import "../css/OperationCreateModalStyle.css";
 
 const layout = {
   labelCol: { span: 6 },
@@ -15,30 +15,30 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-function ProductCreateModalComponent({ showModal, visible }: any) {
+function OperationCreateModalComponent({ showModal, visible }: any) {
   const [form] = Form.useForm();
   const { register, handleSubmit, errors } = useForm();
-  const [products, setProducts] = useState({});
-  const [category, setCategory] = useState({});
+  const [operations, setOperations] = useState({});
+  const [category, setClient] = useState({});
   const dispatch = useDispatch();
-  const categories = useSelector((state: any) => state.models["clients"]);
+  const clients = useSelector((state: any) => state.models["clients"]);
 
-  function handleAddCategories() {
-    setProducts((products) => ({
-      ...products,
-      categories: categories?.map((f: any) => ({ id: f.value })),
+  function handleAddClients() {
+    setOperations((operations) => ({
+      ...operations,
+      clients: clients?.map((f: any) => ({ id: f.value })),
     }));
-    setCategory(categories?.map((cat: any) => ({ id: cat.value })));
+    setClient(clients?.map((cat: any) => ({ id: cat.value })));
   }
   useEffect(() => {
     dispatch(fetchAll("clients"));
   }, []);
 
-  const addProduct = () => {
+  const addOperation = () => {
     form
       .validateFields()
       .then(() => {
-        dispatch(addOne("operations", products));
+        dispatch(addOne("operations", operations));
         showModal(false);
       })
       .catch((error) => {
@@ -47,17 +47,17 @@ function ProductCreateModalComponent({ showModal, visible }: any) {
   };
   const onSubmit = (data: any) => {
     console.log("image", data.image[0].name);
-    setProducts({ ...products, picture: data.image[0].name });
+    setOperations({ ...operations, picture: data.image[0].name });
   };
 
   return (
     <Modal
-      title="Add product "
+      title="Add operation "
       visible={visible}
       onCancel={() => showModal(false)}
       forceRender={true}
       footer={[
-        <Button form="myForm" key="creer" onClick={addProduct}>
+        <Button form="myForm" key="creer" onClick={addOperation}>
           Add
         </Button>,
         <Button key="cancel" htmlType="button" onClick={() => showModal(false)}>
@@ -71,7 +71,7 @@ function ProductCreateModalComponent({ showModal, visible }: any) {
             type="file"
             onChange={handleSubmit(onSubmit)}
             name="image"
-            className="product-input-image"
+            className="operation-input-image"
           />
           {errors.name && errors.name.type === "required" && (
             <span>This is required</span>
@@ -85,7 +85,7 @@ function ProductCreateModalComponent({ showModal, visible }: any) {
             type="text"
             onChange={(e) => {
               e.persist();
-              setProducts({ ...products, designation: e.target.value });
+              setOperations({ ...operations, designation: e.target.value });
             }}
           />
         </Form.Item>
@@ -94,7 +94,7 @@ function ProductCreateModalComponent({ showModal, visible }: any) {
             type="text"
             onChange={(e) => {
               e.persist();
-              setProducts({ ...products, description: e.target.value });
+              setOperations({ ...operations, description: e.target.value });
             }}
           />
         </Form.Item>
@@ -103,18 +103,21 @@ function ProductCreateModalComponent({ showModal, visible }: any) {
             type="text"
             onChange={(e) => {
               e.persist();
-              setProducts({ ...products, price: parseFloat(e.target.value) });
+              setOperations({
+                ...operations,
+                price: parseFloat(e.target.value),
+              });
             }}
             required
           />
         </Form.Item>
-        <Form.Item name="categories" label="Categorie(s)">
+        <Form.Item name="clients" label="Client(s)">
           <MultipleInputSelect
-            values={categories}
-            placeHolder="select categorie"
+            values={clients}
+            placeHolder="select client"
             key="id"
             title="designation"
-            handleChange={handleAddCategories}
+            handleChange={handleAddClients}
           />
         </Form.Item>
         <Form.Item {...tailLayout}></Form.Item>
@@ -123,4 +126,4 @@ function ProductCreateModalComponent({ showModal, visible }: any) {
   );
 }
 
-export default ProductCreateModalComponent;
+export default OperationCreateModalComponent;

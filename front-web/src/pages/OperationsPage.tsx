@@ -3,46 +3,48 @@ import { fetchAll } from "../redux/actions/models";
 import { useDispatch, useSelector } from "react-redux";
 import HomeLayoutComponent from "../components/Home/HomeLayoutComponent";
 import PlusButton from "../components/svgs/PlusButton";
-import ProductCreateModalComponent from "../components/products/ProductCreateModalComponent";
-import "../components/css/products.css";
-import ProductTableComponent from "../components/products/ProductTableComponent";
+import OperationCreateModalComponent from "../components/operations/OperationCreateModalComponent";
+import "../components/css/operations.css";
+import OperationTableComponent from "../components/operations/OperationTableComponent";
 
-function ProductsPage() {
+function OperationsPage() {
   const [visible, showModal] = useState(false);
   const dispatch = useDispatch();
-  const products: any = useSelector((state: any) => state.models["products"]);
+  const operations: any = useSelector(
+    (state: any) => state.models["operations"]
+  );
   useEffect(() => {
-    dispatch(fetchAll("products"));
+    dispatch(fetchAll("operations"));
   }, []);
 
   return (
     <HomeLayoutComponent>
       <div className="site-card-wrapper">
-        {products && <ProductTableComponent products={products} />}
+        {operations && <OperationTableComponent operations={operations} />}
       </div>
       <div className="footer">
         <PlusButton showModal={() => showModal(!visible)} />
       </div>
-      <ProductCreateModalComponent visible={visible} showModal={showModal} />
+      <OperationCreateModalComponent visible={visible} showModal={showModal} />
     </HomeLayoutComponent>
   );
 }
 
-export default ProductsPage;
+export default OperationsPage;
 
 {
   /* <Row gutter={[48, 24]}>
-          {products &&
-            products.map((products: any) => (
+          {operations &&
+            operations.map((operations: any) => (
               <Col
-                key={products.id}
+                key={operations.id}
                 className="gutter-row"
                 sm={24}
                 md={12}
                 lg={8}
                 xl={8}
               >
-                { <ProductCardComponent {...products} /> }
+                { <OperationCardComponent {...operations} /> }
               </Col>
             ))}
         </Row> */

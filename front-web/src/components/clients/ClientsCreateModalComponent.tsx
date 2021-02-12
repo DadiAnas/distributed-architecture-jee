@@ -8,12 +8,12 @@ const layout = {
   wrapperCol: { span: 16 },
 };
 
-function CategoriesCreateModalComponent({ showModal, visible }: any) {
+function ClientsCreateModalComponent({ showModal, visible }: any) {
   const [form] = Form.useForm();
-  const [categorie, setcategorie] = useState<any>({});
+  const [client, setcategorie] = useState<any>({});
   const dispatch = useDispatch();
   const addcategorie = () => {
-    dispatch(addOne("clients", categorie));
+    dispatch(addOne("clients", client));
     form.setFieldsValue({ title: "" });
     showModal(false);
   };
@@ -32,17 +32,13 @@ function CategoriesCreateModalComponent({ showModal, visible }: any) {
       ]}
     >
       <Form {...layout} form={form} name="control-hooks" id="myForm">
-        <Form.Item
-          name="name"
-          label="Category Name"
-          rules={[{ required: true }]}
-        >
+        <Form.Item name="name" label="Client Name" rules={[{ required: true }]}>
           <Input
             style={{ marginLeft: "12px" }}
             onChange={(e) => {
               e.persist();
-              setcategorie((categorie: any) => ({
-                ...categorie,
+              setcategorie((client: any) => ({
+                ...client,
                 name: e.target.value,
               }));
             }}
@@ -54,4 +50,4 @@ function CategoriesCreateModalComponent({ showModal, visible }: any) {
   );
 }
 
-export default CategoriesCreateModalComponent;
+export default ClientsCreateModalComponent;

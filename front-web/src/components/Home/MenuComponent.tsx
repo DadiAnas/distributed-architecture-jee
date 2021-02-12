@@ -36,17 +36,17 @@ function MenuComponent({ children }: any) {
           selectedKeys={pathRoutes}
           expandIcon={<ExpandLeft />}
         >
-          <Menu.Item key="products" icon={<Bottle />}>
-            <Link to="/products" style={{ position: "relative", left: 10 }}>
-              Products
+          <Menu.Item key="operations" icon={<Bottle />}>
+            <Link to="/operations" style={{ position: "relative", left: 10 }}>
+              Operations
             </Link>
           </Menu.Item>
           <Menu.Item
-            key="categories"
+            key="clients"
             style={{ color: "rgba(0, 0, 0, 0.65)" }}
             icon={<ReadOutlined style={{ color: "#e8501d" }} />}
           >
-            <Link to="/categories">Categories</Link>
+            <Link to="/clients">Clients</Link>
           </Menu.Item>
           <Menu.Item key="settings" icon={<SettingsSVG />}>
             <Link to="/settings" style={{ position: "relative", left: 10 }}>

@@ -8,15 +8,15 @@ function HomeBreadCrumbsComponent() {
   const { categorieId } = useParams();
   return (
     <Breadcrumb style={{ margin: "16px 0" }}>
-      {paths.includes("products") && (
-        <Breadcrumb.Item>Products</Breadcrumb.Item>
+      {paths.includes("operations") && (
+        <Breadcrumb.Item>Operations</Breadcrumb.Item>
       )}
-      {paths.includes("categories") && (
+      {paths.includes("clients") && (
         <Breadcrumb.Item>
-          <Link to={"/categories"}>Categories</Link>
+          <Link to={"/clients"}>Clients</Link>
         </Breadcrumb.Item>
       )}
-      {paths.includes("categories") && (
+      {paths.includes("clients") && (
         <Breadcrumb.Item>{categorieId}</Breadcrumb.Item>
       )}
       {paths.includes("settings") && (

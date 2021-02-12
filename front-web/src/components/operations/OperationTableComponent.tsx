@@ -11,12 +11,12 @@ import { deleteOne } from "../../redux/actions/models";
 import { useDispatch, useSelector } from "react-redux";
 import "../css/OperationTableStyle.css";
 import { Link } from "react-router-dom";
-import ProductEditModalComponent from "./OperationEditModalComponent";
+import OperationEditModalComponent from "./OperationEditModalComponent";
 
-function ProductTableComponent({ products }: any) {
+function OperationTableComponent({ operations }: any) {
   const dispatch = useDispatch();
   const [visible, showEditModal] = useState(false);
-  const [productToEdit, setProductToEdit] = useState({});
+  const [operationToEdit, setOperationToEdit] = useState({});
 
   const columns: ColumnProps<any>[] = [
     {
@@ -38,10 +38,10 @@ function ProductTableComponent({ products }: any) {
       title: "Actions",
       dataIndex: "action",
       key: "action",
-      render: (cell, product, index) => (
+      render: (cell, operation, index) => (
         <>
           <div className="actionButtons">
-            {/* <Link to={`/products/${product.id}`}>
+            {/* <Link to={`/operations/${operation.id}`}>
               <Button>
                 <BarsOutlined />
               </Button>
@@ -49,14 +49,14 @@ function ProductTableComponent({ products }: any) {
             <Button
               onClick={() => {
                 showEditModal(!visible);
-                setProductToEdit(product);
+                setOperationToEdit(operation);
               }}
             >
-              <EditOutlined className="product-table-EditOutlined" />
+              <EditOutlined className="operation-table-EditOutlined" />
             </Button>
             <Button
               danger
-              onClick={() => dispatch(deleteOne("operations", product.id))}
+              onClick={() => dispatch(deleteOne("operations", operation.id))}
             >
               <DeleteOutlined />
             </Button>
@@ -67,9 +67,9 @@ function ProductTableComponent({ products }: any) {
   ];
   return (
     <>
-      <Table columns={columns} dataSource={products || []} rowKey="id" />
-      <ProductEditModalComponent
-        productToEdit={productToEdit}
+      <Table columns={columns} dataSource={operations || []} rowKey="id" />
+      <OperationEditModalComponent
+        operationToEdit={operationToEdit}
         showModal={showEditModal}
         visible={visible}
       />
@@ -77,4 +77,4 @@ function ProductTableComponent({ products }: any) {
   );
 }
 
-export default ProductTableComponent;
+export default OperationTableComponent;

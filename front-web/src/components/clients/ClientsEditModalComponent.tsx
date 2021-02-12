@@ -8,19 +8,19 @@ const layout = {
   wrapperCol: { span: 16 },
 };
 
-function CategoriesEditModalComponent({ showModal, visible, category }: any) {
+function ClientsEditModalComponent({ showModal, visible, category }: any) {
   const [form] = Form.useForm();
-  const [newCategory, setnewCategory] = useState(category);
+  const [newClient, setnewClient] = useState(category);
   const dispatch = useDispatch();
   const addcategory = () => {
-    dispatch(editOne("clients", newCategory.id, newCategory));
+    dispatch(editOne("clients", newClient.id, newClient));
     showModal(false);
   };
 
   useEffect(() => {
-    setnewCategory(category);
+    setnewClient(category);
     form.setFieldsValue(category);
-    console.log(newCategory);
+    console.log(newClient);
   }, [category]);
   return (
     <Modal
@@ -42,7 +42,7 @@ function CategoriesEditModalComponent({ showModal, visible, category }: any) {
           <Input
             onChange={(e) => {
               e.persist();
-              setnewCategory((category: any) => ({
+              setnewClient((category: any) => ({
                 ...category,
                 name: e.target.value,
               }));
@@ -54,4 +54,4 @@ function CategoriesEditModalComponent({ showModal, visible, category }: any) {
   );
 }
 
-export default CategoriesEditModalComponent;
+export default ClientsEditModalComponent;

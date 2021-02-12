@@ -1,22 +1,22 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import CategoryProductsPage from "./ClientsOperationsPage";
-import CategoriesPage from "./ClientsPage";
+import ClientOperationsPage from "./ClientsOperationsPage";
+import ClientsPage from "./ClientsPage";
 import HomePage from "./HomePage";
-import ProductsPage from "./OperationsPage";
+import OperationsPage from "./OperationsPage";
 import SettingsPage from "./SettingsPage";
 
 function Routes() {
   return (
     <Switch>
       <Route exact path="/opertaions">
-        <ProductsPage />
+        <OperationsPage />
       </Route>
       <Route exact path="/clients">
-        <CategoriesPage />
+        <ClientsPage />
       </Route>
       <Route exact path="/clients/:clientId/operations">
-        <CategoryProductsPage />
+        <ClientOperationsPage />
       </Route>
       <Route exact path="/settings">
         <SettingsPage />

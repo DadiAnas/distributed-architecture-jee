@@ -1,8 +1,8 @@
 package org.anas.AuthenticationService;
 
 import org.anas.AuthenticationService.service.AccountService;
-import org.anas.AuthenticationService.entities.AppRole;
-import org.anas.AuthenticationService.entities.AppUser;
+import org.anas.AuthenticationService.service.AppRole;
+import org.anas.AuthenticationService.service.AppUser;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

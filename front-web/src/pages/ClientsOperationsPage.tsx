@@ -8,17 +8,19 @@ import { fetchAll } from "../redux/actions/models";
 import { useParams } from "react-router-dom";
 import { RequestQueryBuilder } from "@nestjsx/crud-request";
 import HomeLayoutComponent from "../components/Home/HomeLayoutComponent";
-import ProductTableComponent from "../components/operations/OperationTableComponent";
+import OperationTableComponent from "../components/operations/OperationTableComponent";
 import "../components/css/OperationTableStyle.css";
 
-function CategoryProductsPage() {
+function ClientOperationsPage() {
   const dispatch = useDispatch();
-  const products: any = useSelector((state: any) => state.models["products"]);
+  const operations: any = useSelector(
+    (state: any) => state.models["operations"]
+  );
   const { clientId } = useParams();
   useEffect(() => {
     const qb = RequestQueryBuilder.create();
     qb.setFilter({
-      field: "categories.id",
+      field: "clients.id",
       operator: "$eq",
       value: clientId,
     });
@@ -35,10 +37,10 @@ function CategoryProductsPage() {
         />
       </div>
       <div className="site-card-wrapper">
-        {products && <ProductTableComponent {...products} />}
+        {operations && <OperationTableComponent {...operations} />}
       </div>
     </HomeLayoutComponent>
   );
 }
 
-export default CategoryProductsPage;
+export default ClientOperationsPage;

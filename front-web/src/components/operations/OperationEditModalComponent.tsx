@@ -30,24 +30,28 @@ function cancel(e: any) {
   message.error("Click on No");
 }
 
-function ProductEditModalComponent({ visible, showModal, productToEdit }: any) {
+function OperationEditModalComponent({
+  visible,
+  showModal,
+  operationToEdit,
+}: any) {
   const [loading, setLoading] = useState(false);
-  const categories = useSelector((state: any) => state.models["categories"]);
-  const [products, setProducts] = useState<any>({ ...productToEdit });
+  const clients = useSelector((state: any) => state.models["clients"]);
+  const [operations, setOperations] = useState<any>({ ...operationToEdit });
   const dispatch = useDispatch();
   const [form] = Form.useForm();
 
   useEffect(() => {
-    setProducts({ ...productToEdit });
-    form.setFieldsValue(productToEdit); //({...productToEdit,categories:productToEdit.categories.map((f:any) => f.id)})
+    setOperations({ ...operationToEdit });
+    form.setFieldsValue(operationToEdit); //({...operationToEdit,clients:operationToEdit.clients.map((f:any) => f.id)})
     dispatch(fetchAll("clients"));
-  }, [productToEdit]);
+  }, [operationToEdit]);
 
-  function handleAddFiliere(categoriesIds: number[]) {
-    console.log({ categoriesIds });
-    setProducts((products: any) => ({
-      ...products,
-      categories: categoriesIds.map((id: any) => ({ id: id.value })),
+  function handleAddFiliere(clientsIds: number[]) {
+    console.log({ clientsIds });
+    setOperations((operations: any) => ({
+      ...operations,
+      clients: clientsIds.map((id: any) => ({ id: id.value })),
     }));
   }
   const tailLayout = {
@@ -80,13 +84,13 @@ function ProductEditModalComponent({ visible, showModal, productToEdit }: any) {
   };
 
   const handleEdit = () => {
-    dispatch(editOne("operations", products.id, products));
+    dispatch(editOne("operations", operations.id, operations));
     showModal(false);
   };
   return (
     <Modal
       forceRender
-      title="Edit product"
+      title="Edit operation"
       visible={visible}
       onCancel={() => showModal(false)}
       footer={[
@@ -108,8 +112,8 @@ function ProductEditModalComponent({ visible, showModal, productToEdit }: any) {
           <Input
             onChange={(e) => {
               e.persist();
-              setProducts((products: any) => ({
-                ...products,
+              setOperations((operations: any) => ({
+                ...operations,
                 designation: e.target.value,
               }));
             }}
@@ -120,7 +124,7 @@ function ProductEditModalComponent({ visible, showModal, productToEdit }: any) {
             type="text"
             onChange={(e) => {
               e.persist();
-              setProducts({ ...products, description: e.target.value });
+              setOperations({ ...operations, description: e.target.value });
             }}
           />
         </Form.Item>
@@ -134,16 +138,19 @@ function ProductEditModalComponent({ visible, showModal, productToEdit }: any) {
             type="text"
             onChange={(e) => {
               e.persist();
-              setProducts({ ...products, price: parseFloat(e.target.value) });
+              setOperations({
+                ...operations,
+                price: parseFloat(e.target.value),
+              });
             }}
             required
           />
         </Form.Item>
 
-        <Form.Item name="categories" label="Categorie(s)">
+        <Form.Item name="clients" label="Client(s)">
           <MultipleInputSelect
-            values={categories}
-            placeHolder="Select Categorie"
+            values={clients}
+            placeHolder="Select Client"
             key="id"
             title="title"
             handleChange={handleAddFiliere}
@@ -155,4 +162,4 @@ function ProductEditModalComponent({ visible, showModal, productToEdit }: any) {
   );
 }
 
-export default ProductEditModalComponent;
+export default OperationEditModalComponent;

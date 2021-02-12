@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.anas.AuthenticationService.entities.AppRole;
 
 import javax.persistence.*;
 import java.util.ArrayList;
