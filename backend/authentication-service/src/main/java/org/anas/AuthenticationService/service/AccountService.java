@@ -1,6 +1,9 @@
 package org.anas.AuthenticationService.service;
 
 
+import org.anas.AuthenticationService.entities.AppRole;
+import org.anas.AuthenticationService.entities.AppUser;
+
 import java.util.Collection;
 
 public interface AccountService {

@@ -15,7 +15,8 @@ export const fetchAll = (model: Model, query: string = "") => {
       })
       .then((response) => {
         console.log(response);
-        dispatch({ type: FETCH_ALL, payload: { model, data: response.data } });
+        dispatch({ type: FETCH_ALL, payload: { model, data: response.data._embedded.operations } });
+
       })
       .catch((err) => {
         console.error(`Fetch All ${model} error:\n`, err);

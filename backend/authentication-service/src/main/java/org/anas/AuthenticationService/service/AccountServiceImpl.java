@@ -1,6 +1,8 @@
 package org.anas.AuthenticationService.service;
 
 
+import org.anas.AuthenticationService.entities.AppRole;
+import org.anas.AuthenticationService.entities.AppUser;
 import org.anas.AuthenticationService.repository.AppRoleRepository;
 import org.anas.AuthenticationService.repository.AppUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;

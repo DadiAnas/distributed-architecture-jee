@@ -20,19 +20,24 @@ function OperationTableComponent({ operations }: any) {
 
   const columns: ColumnProps<any>[] = [
     {
-      title: "Designation",
-      dataIndex: "designation",
-      key: "designation",
+      title: "id",
+      dataIndex: "id",
+      key: "id",
     },
     {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
+      title: "montant",
+      dataIndex: "montant",
+      key: "montant",
     },
     {
-      title: "Price",
-      dataIndex: "price",
-      key: "description",
+      title: "date",
+      dataIndex: "date",
+      key: "date",
+    },
+    {
+      title: "type",
+      dataIndex: "type",
+      key: "type",
     },
     {
       title: "Actions",

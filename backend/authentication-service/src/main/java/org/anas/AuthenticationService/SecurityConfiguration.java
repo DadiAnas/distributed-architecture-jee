@@ -1,9 +1,8 @@
 package org.anas.AuthenticationService;
 
-import org.anas.AuthenticationService.filters.JwtAuthorizationFilter;
+
 import org.anas.AuthenticationService.service.AccountService;
-import org.anas.AuthenticationService.service.AppUser;
-import org.anas.AuthenticationService.filters.JwtAuthenticationFilter;
+import org.anas.AuthenticationService.entities.AppUser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

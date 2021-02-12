@@ -9,7 +9,7 @@ import SettingsPage from "./SettingsPage";
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/opertaions">
+      <Route exact path="/operations">
         <OperationsPage />
       </Route>
       <Route exact path="/clients">
