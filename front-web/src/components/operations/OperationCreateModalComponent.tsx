@@ -1,0 +1,126 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Form, Input, Modal, Button, Select } from "antd";
+import { addOne, fetchAll } from "../../redux/actions/models";
+import "../../../node_modules/antd/dist/antd.css";
+import MultipleInputSelect from "../MultipleInputSelect";
+import { useForm } from "react-hook-form";
+import "../css/ProductCreateModalStyle.css";
+
+const layout = {
+  labelCol: { span: 6 },
+  wrapperCol: { span: 16 },
+};
+const tailLayout = {
+  wrapperCol: { offset: 8, span: 16 },
+};
+
+function ProductCreateModalComponent({ showModal, visible }: any) {
+  const [form] = Form.useForm();
+  const { register, handleSubmit, errors } = useForm();
+  const [products, setProducts] = useState({});
+  const [category, setCategory] = useState({});
+  const dispatch = useDispatch();
+  const categories = useSelector((state: any) => state.models["clients"]);
+
+  function handleAddCategories() {
+    setProducts((products) => ({
+      ...products,
+      categories: categories?.map((f: any) => ({ id: f.value })),
+    }));
+    setCategory(categories?.map((cat: any) => ({ id: cat.value })));
+  }
+  useEffect(() => {
+    dispatch(fetchAll("clients"));
+  }, []);
+
+  const addProduct = () => {
+    form
+      .validateFields()
+      .then(() => {
+        dispatch(addOne("operations", products));
+        showModal(false);
+      })
+      .catch((error) => {
+        return;
+      });
+  };
+  const onSubmit = (data: any) => {
+    console.log("image", data.image[0].name);
+    setProducts({ ...products, picture: data.image[0].name });
+  };
+
+  return (
+    <Modal
+      title="Add product "
+      visible={visible}
+      onCancel={() => showModal(false)}
+      forceRender={true}
+      footer={[
+        <Button form="myForm" key="creer" onClick={addProduct}>
+          Add
+        </Button>,
+        <Button key="cancel" htmlType="button" onClick={() => showModal(false)}>
+          cancel
+        </Button>,
+      ]}
+    >
+      <Form {...layout} form={form} id="myForm" name="control-hooks">
+        <Form.Item label="Picture">
+          <Input
+            type="file"
+            onChange={handleSubmit(onSubmit)}
+            name="image"
+            className="product-input-image"
+          />
+          {errors.name && errors.name.type === "required" && (
+            <span>This is required</span>
+          )}
+          {errors.name && errors.name.type === "maxLength" && (
+            <span>Max length exceeded</span>
+          )}
+        </Form.Item>
+        <Form.Item label="Designation" rules={[{ required: true }]} required>
+          <Input
+            type="text"
+            onChange={(e) => {
+              e.persist();
+              setProducts({ ...products, designation: e.target.value });
+            }}
+          />
+        </Form.Item>
+        <Form.Item label="Description">
+          <Input
+            type="text"
+            onChange={(e) => {
+              e.persist();
+              setProducts({ ...products, description: e.target.value });
+            }}
+          />
+        </Form.Item>
+        <Form.Item label="price" rules={[{ required: true }]} required>
+          <Input
+            type="text"
+            onChange={(e) => {
+              e.persist();
+              setProducts({ ...products, price: parseFloat(e.target.value) });
+            }}
+            required
+          />
+        </Form.Item>
+        <Form.Item name="categories" label="Categorie(s)">
+          <MultipleInputSelect
+            values={categories}
+            placeHolder="select categorie"
+            key="id"
+            title="designation"
+            handleChange={handleAddCategories}
+          />
+        </Form.Item>
+        <Form.Item {...tailLayout}></Form.Item>
+      </Form>
+    </Modal>
+  );
+}
+
+export default ProductCreateModalComponent;

@@ -1,0 +1,44 @@
+.footer {
+    float: right;
+}
+
+.btn:hover {
+    background-color: linear-gradient(180deg, rgb(137, 62, 207) 0%, #DE67A2 100%);
+}
+
+.btn:active {
+    background-color: linear-gradient(180deg, rgb(137, 62, 207) 0%, #DE67A2 100%);
+    transform: translateY(4px);
+}
+
+.menu {
+    background: white;
+    border: 2px solid #F0F0F0;
+    height: inherit;
+    overflow-y: auto;
+    height: auto;
+    overflow-x: hidden;
+}
+
+
+
+.gutter-box {
+    padding: 8px 0;
+}
+
+.site-card-wrapper {
+    padding: 2%;
+}
+
+
+
+.ant-upload-picture-card-wrapper {
+    margin-left: 104px;
+}
+
+
+.anticon-bars {
+    color: grey;
+    background: white;
+    border: 1px solid #F0F0F0
+}
