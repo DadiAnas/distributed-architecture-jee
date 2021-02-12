@@ -66,21 +66,7 @@ function OperationCreateModalComponent({ showModal, visible }: any) {
       ]}
     >
       <Form {...layout} form={form} id="myForm" name="control-hooks">
-        <Form.Item label="Picture">
-          <Input
-            type="file"
-            onChange={handleSubmit(onSubmit)}
-            name="image"
-            className="operation-input-image"
-          />
-          {errors.name && errors.name.type === "required" && (
-            <span>This is required</span>
-          )}
-          {errors.name && errors.name.type === "maxLength" && (
-            <span>Max length exceeded</span>
-          )}
-        </Form.Item>
-        <Form.Item label="Designation" rules={[{ required: true }]} required>
+        <Form.Item label="montant" rules={[{ required: true }]} required>
           <Input
             type="text"
             onChange={(e) => {
@@ -89,16 +75,16 @@ function OperationCreateModalComponent({ showModal, visible }: any) {
             }}
           />
         </Form.Item>
-        <Form.Item label="Description">
+        <Form.Item label="date">
           <Input
-            type="text"
+            type="date"
             onChange={(e) => {
               e.persist();
               setOperations({ ...operations, description: e.target.value });
             }}
           />
         </Form.Item>
-        <Form.Item label="price" rules={[{ required: true }]} required>
+        <Form.Item label="type" rules={[{ required: true }]} required>
           <Input
             type="text"
             onChange={(e) => {
@@ -111,10 +97,10 @@ function OperationCreateModalComponent({ showModal, visible }: any) {
             required
           />
         </Form.Item>
-        <Form.Item name="clients" label="Client(s)">
+        <Form.Item name="Comptes" label="Compte(s)">
           <MultipleInputSelect
             values={clients}
-            placeHolder="select client"
+            placeHolder="Select Compte"
             key="id"
             title="designation"
             handleChange={handleAddClients}

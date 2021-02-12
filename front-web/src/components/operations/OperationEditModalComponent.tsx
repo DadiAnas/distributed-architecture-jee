@@ -36,7 +36,7 @@ function OperationEditModalComponent({
   operationToEdit,
 }: any) {
   const [loading, setLoading] = useState(false);
-  const clients = useSelector((state: any) => state.models["clients"]);
+  const clients = useSelector((state: any) => state.models["comptes"]);
   const [operations, setOperations] = useState<any>({ ...operationToEdit });
   const dispatch = useDispatch();
   const [form] = Form.useForm();
@@ -44,7 +44,7 @@ function OperationEditModalComponent({
   useEffect(() => {
     setOperations({ ...operationToEdit });
     form.setFieldsValue(operationToEdit); //({...operationToEdit,clients:operationToEdit.clients.map((f:any) => f.id)})
-    dispatch(fetchAll("clients"));
+    dispatch(fetchAll("comptes"));
   }, [operationToEdit]);
 
   function handleAddFiliere(clientsIds: number[]) {
@@ -104,11 +104,7 @@ function OperationEditModalComponent({
     >
       <EditOutlined style={{ color: "#e8501d" }} />
       <Form {...layout} form={form} name="control-hooks" id="myForm">
-        <Form.Item
-          name="designation"
-          label="Designation"
-          rules={[{ required: true }]}
-        >
+        <Form.Item name="Montant" label="montant" rules={[{ required: true }]}>
           <Input
             onChange={(e) => {
               e.persist();
@@ -119,9 +115,9 @@ function OperationEditModalComponent({
             }}
           />
         </Form.Item>
-        <Form.Item label="Description" name="description">
+        <Form.Item label="Date" name="date">
           <Input
-            type="text"
+            type="date"
             onChange={(e) => {
               e.persist();
               setOperations({ ...operations, description: e.target.value });
@@ -129,8 +125,8 @@ function OperationEditModalComponent({
           />
         </Form.Item>
         <Form.Item
-          name="price"
-          label="price"
+          name="type"
+          label="type"
           rules={[{ required: true }]}
           required
         >
@@ -147,10 +143,10 @@ function OperationEditModalComponent({
           />
         </Form.Item>
 
-        <Form.Item name="clients" label="Client(s)">
+        <Form.Item name="compte" label="Compte(s)">
           <MultipleInputSelect
             values={clients}
-            placeHolder="Select Client"
+            placeHolder="Select Compte"
             key="id"
             title="title"
             handleChange={handleAddFiliere}

@@ -18,7 +18,7 @@ function Routes() {
       <Route exact path="/compte/:compteId/operations">
         <ClientOperationsPage />
       </Route>
-      <Route exact path="/settings">
+      <Route exact path="/clients">
         <SettingsPage />
       </Route>
       <Route path="/">

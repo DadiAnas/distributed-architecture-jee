@@ -31,7 +31,7 @@ function OperationTableComponent({ operations }: any) {
     },
     {
       title: "date",
-      dataIndex: "date",
+      dataIndex: "created_at",
       key: "date",
     },
     {
